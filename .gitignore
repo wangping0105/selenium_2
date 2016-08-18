@@ -1,0 +1,11 @@
+/bin
+.settings
+.project
+.classpath
+/testout
+lib/
+files/
+test-output/
+
+#ignore config/*.xml 
+config/*.xml
