@@ -16,27 +16,27 @@ import com.test.bean.Global;
 import com.test.util.ParseXml;
 import com.test.util.Util;
 
-public class TestBase {	
-	
+public class TestBase {
+
 	protected WebDriver driver;
-	
+
 	private ParseXml px;
-	
+
 	private Map<String, String> commonMap;
-	
+
 	private void initialPx(){
-		if(px==null){			
+		if(px==null){
 			px = new ParseXml("test-data/"+this.getClass().getSimpleName()+".xml");
 		}
 	}
-	
+
 	private void getCommonMap(){
-		if(commonMap==null){			
+		if(commonMap==null){
 			Element element = px.getElementObject("/*/common");
 			commonMap = px.getChildrenInfoByElement(element);
 		}
 	}
-	
+
 	private Map<String, String> getMergeMapData(Map<String, String> map1, Map<String, String> map2){
 		Iterator<String> it = map2.keySet().iterator();
 		while(it.hasNext()){
@@ -48,9 +48,9 @@ public class TestBase {
 		}
 		return map1;
 	}
-	
+
 	@DataProvider
-    public Object[][] providerMethod(Method method){	
+    public Object[][] providerMethod(Method method){
 		this.initialPx();
 		this.getCommonMap();
 		String methodName = method.getName();
@@ -64,13 +64,13 @@ public class TestBase {
 		}
 		return object;
 	}
-	
+
 	@BeforeClass
 	public void initialDriver(){
 		SeleniumDriver selenium = new SeleniumDriver();
 		driver = selenium.getDriver();
 	}
-	
+
 	@AfterClass
 	public void closeDriver(){
 		if(driver!=null){
@@ -78,12 +78,13 @@ public class TestBase {
 			driver.quit();
 		}
 	}
-	
+
 	public void goTo(String url){
-		driver.get(url);		
+		driver.get(url);
 		if(Config.browser.equals("chrome")){
+			Util.sleep(1);
+		}else if(Config.browser.equals("firefox")){
 			Util.sleep(1);
 		}
 	}
-	
 }

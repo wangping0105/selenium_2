@@ -26,6 +26,7 @@ public class SeleniumDriver {
 
 	private void initialDriver(){
 		if("firefox".equals(Config.browser)){
+			System.setProperty("webdriver.firefox.bin", "D:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
 			driver = new FirefoxDriver();
 		}else if("ie".equals(Config.browser)){
 			System.setProperty("webdriver.ie.driver", "files/iedriver.exe");
@@ -38,6 +39,7 @@ public class SeleniumDriver {
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--test-type");
 			driver = new ChromeDriver(options);
+
 		}else{
 			Log.logInfo(Config.browser+" 的值不正确，请检查！");
 		}
@@ -46,9 +48,18 @@ public class SeleniumDriver {
 	}
 
 	public static void main(String[] args) {
+//		System.setProperty("webdriver.firefox.bin", "D:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");
+//		FirefoxProfile profile = new FirefoxProfile(new File("E:\\FirefoxProfile\\"));
+//		WebDriver driver = new FirefoxDriver(profile);
 		SeleniumDriver selenium = new SeleniumDriver();
 		WebDriver driver = selenium.getDriver();
 		driver.navigate().to("http://ymbuat.renruihr.com");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.close();
 		driver.quit();
 	}
