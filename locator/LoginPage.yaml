@@ -1,9 +1,16 @@
+# 用户名输入框
 username:
   type:id
   value:userName
+# 用户密码输入框
 password:
   type:id
   value:password
+# 登录按钮
 login_button:
   type:id
   value:btn-login
+# 报错信息
+loginpwd_error:
+  type:xpath
+  value:".//*[@id='loginForm']/div[3]/span"

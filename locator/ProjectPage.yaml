@@ -1,0 +1,130 @@
+# 项目管理菜单按钮
+project: 
+  type:xpath
+  value:".//*[@id='myNav']/li[2]/a"
+# 新增项目按钮
+addproject:
+  type:linkText
+  value:"新增项目"
+# 合同编号输入框
+contractnumber:
+  type:xpath
+  value:".//div[2]/div[2]/div[2]/input[1]"
+# 导入合同的确定按钮
+contractok:
+  type:xpath
+  value:".//div[2]/div[2]/div[2]/input[2]"
+# 公司全称
+companyname:
+  type:xpath
+  value:".//div/div[2]/div[3]/div[2]/input"
+# 打开执行城市选择窗口
+executecity:
+  type:xpath
+  value:".//div[2]/div[7]/div[2]/div/div"
+# 选择执行城市
+choosecity:
+  type:xpath
+  value:".//*[@id='cityModel']/div/div/div[2]/div/a[1]"
+# 关闭执行城市选择窗口
+choosecityok:
+  type:xpath
+  value:".//*[@id='cityModel']/div/div/div[3]/button"
+# 岗位用工方式
+pospattern:
+  type:xpath
+  value:".//div/div[2]/div[7]/div[4]/select"
+# 项目紧急程度
+projectdesc:
+  type:xpath
+  value:".//div/div[2]/div[8]/div[2]/select"
+# 项目名称
+projectname:
+  type:xpath
+  value:".//div/div[2]/div[8]/div[4]/input"
+# 客户经理
+accountmanager:
+  type:xpath
+  value:".//div/div[2]/div[9]/div[2]/select"
+# 项目介绍
+prodescription:
+  type:xpath
+  value:".//div/div[2]/div[10]/div[2]/textarea"
+# 服务类型
+servicetype:
+  type:xpath
+  value:".//div/div[2]/div[12]/div[2]/select"
+# 费用标准
+expstandards:
+  type:xpath
+  value:".//div/div[2]/div[12]/div[4]/div[1]/select"
+# 费用
+expenses:
+  type:xpath
+  value:".//div/div[2]/div[12]/div[4]/div[2]/div/input"
+# 付费类型
+paymenttype:
+  type:xpath
+  value:".//div/div[2]/div[13]/div[2]/ul/li[3]/input"
+# 付费百分比
+Percentpay: 
+  type:xpath
+  value:".//div/div[2]/div[13]/div[2]/ul/li[5]/input"
+# 质保期
+guaranteedtime:
+  type:xpath
+  value:".//div/div[2]/div[13]/div[4]/select"
+ 
+ #公司简称
+companyshort:
+  type:xpath
+  value:".//div/div[2]/div[15]/div[4]/input"
+  
+#月薪竞争力
+monthsalary:
+  type:xpath
+  value:".//div/div[2]/div[24]/div[2]/select" 
+#试用期薪资  
+probationary:
+  type:xpath
+  value:".//div/div[2]/div[24]/div[4]/select"  
+#调薪周期
+period:
+  type:xpath
+  value:".//div/div[2]/div[25]/div[2]/select"  
+#社保公积金 
+socialsecurity:
+  type:xpath
+  value:".//div/div[2]/div[25]/div[4]/select"
+#年终奖 
+annualbonus:
+  type:xpath
+  value:".//div/div[2]/div[26]/div[2]/select"  
+#加班处理 
+overtime:
+  type:xpath
+  value:".//div/div[2]/div[26]/div[4]/select" 
+#其他福利 
+otherwelfare:
+  type:xpath
+  value:".//div/div[2]/div[27]/div[2]/input"
+  
+#推荐报告反馈周期 
+recomreport: 
+  type:xpath
+  value:".//div/div[2]/div[29]/div[2]/select"
+#面试反馈周期 
+interview: 
+  type:xpath
+  value:".//div/div[2]/div[29]/div[4]/select"  
+  
+  
+# 其他信息
+othermessage:
+  type:xpath
+  value:".//div/div[2]/div[32]/div[2]/input" 
+# 保存
+preserved:
+  type:xpath
+  value:".//div/div[2]/div[33]/div/button" 
+  
