@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
    	<common>				
+		<url>http://ymbuat.renruihr.com/</url>
 	</common>
 	<testLogin>
 	    <username>wlpm</username>
 		<password>wl113526</password>
-		<url>http://ymbuat.renruihr.com/</url>
 	</testLogin>
 </data>
