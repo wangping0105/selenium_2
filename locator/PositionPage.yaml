@@ -4,8 +4,8 @@ position:
   value:".//*[@id='myNav']/li[3]/a"
 # 新增项目按钮
 addposition:
-  type:linkText
-  value:"新增职位"
+  type:xpath
+  value:".//div[1]/div[2]/div/div[1]/div[1]/button[2]"
 # 項目名称
 projectname:
   type:xpath
