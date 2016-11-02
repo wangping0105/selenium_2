@@ -14,10 +14,22 @@ contractnumber:
 contractok:
   type:xpath
   value:".//div[2]/div[2]/div[2]/input[2]"
-# 公司全称
-companyname:
+#打开合同执行城市
+opencontractcity:
   type:xpath
-  value:".//div/div[2]/div[3]/div[2]/input"
+  value:".//div/div[2]/div[5]/div[2]/div/div[1]"
+# 选择合同执行城市
+chocontcity:
+  type:xpath
+  value:".//*[@id='myModalTip']/div/div/div[2]/div/a[1]"
+# 关闭合同执行城市选择窗口
+chocontcityok:
+  type:xpath
+  value:".//*[@id='myModalTip']/div/div/div[3]/button"
+# 预付金额
+amountadvance:
+  type:xpath
+  value:".//div/div[2]/div[5]/div[4]/input" 
 # 打开执行城市选择窗口
 executecity:
   type:xpath
@@ -79,6 +91,79 @@ guaranteedtime:
 companyshort:
   type:xpath
   value:".//div/div[2]/div[15]/div[4]/input"
+#公司性质
+naturecompany:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[2]/select"
+#所属行业
+ownedindustry:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[4]/div/div[1]"
+#选择所属行业
+chooseindustry:
+  type:xpath
+  value:".//*[@id='industryModel']/div/div/div[2]/div/a[1]"
+#关闭所属行业窗口
+industryok:
+  type:xpath
+  value:".//*[@id='industryModel']/div/div/div[3]/button"
+#成立时间
+creattime:
+  type:xpath
+  value:".//*[@id='datetimepicker_s']"
+#投资机构
+investinst:
+  type:xpath
+  value:".//div/div[2]/div[17]/div[4]/div[1]/select"
+#企业规模
+enterprisescale:
+  type:xpath
+  value:".//div/div[2]/div[18]/div[2]/select"    
+#技术团队规模
+teamsize:
+  type:xpath
+  value:".//div/div[2]/div[18]/div[4]/select"  
+# 联系人
+hrcontacts:
+  type:xpath
+  value:".//div/div[2]/div[19]/div[2]/input"  
+# 联系方式
+continformation:
+  type:xpath
+  value:".//div/div[2]/div[19]/div[4]/input"
+# 公司地址
+companyadress:  
+  type:xpath
+  value:".//div/div[2]/div[20]/div[2]/input"
+#附近地标
+landmarknearby:  
+  type:xpath
+  value:".//div/div[2]/div[20]/div[4]/input"
+#公司介绍
+compintroduction:
+  type:xpath
+  value:".//div/div[2]/div[21]/div[2]/textarea"  
+#官网链接  
+linkwebsite:  
+  type:xpath
+  value:".//div/div[2]/div[22]/div[2]/input"
+  
+#上传公司logo
+upcompanylogo:
+  type:xpath
+  value:".//div/div[2]/div[15]/div[5]/button" 
+#选择文件按钮
+choosebutton:
+  type:xpath
+  value:".//*[@id='upload']"
+#选择文件输入框
+chooselogo:
+  type:xpath
+  value:".//*[@id='uploadForm']/input"  
+#确定上传文件
+uploadok:
+  type:xpath
+  value:".//*[@id='layui-layer1']/div[3]/a[1]" 
   
 #月薪竞争力
 monthsalary:
@@ -118,7 +203,7 @@ interview:
   type:xpath
   value:".//div/div[2]/div[29]/div[4]/select"  
   
-  
+
 # 其他信息
 othermessage:
   type:xpath

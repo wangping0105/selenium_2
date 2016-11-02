@@ -1,0 +1,136 @@
+#职位管理菜单
+position:
+  type:xpath
+  value:".//*[@id='myNav']/li[3]/a"
+# 新增项目按钮
+addposition:
+  type:linkText
+  value:"新增职位"
+# 項目名称
+projectname:
+  type:xpath
+  value:".//div/div[2]/div[2]/div[2]/select"
+# 岗位名称
+positionname:
+  type:xpath
+  value:".//div/div[2]/div[7]/div[2]/input"
+# 岗位级别
+positionlevel:
+  type:xpath
+  value:".//div/div[2]/div[7]/div[4]/select"
+# 职能分类
+funcclassification:
+  type:xpath
+  value:".//div/div[2]/div[8]/div[2]/select"
+# 工作经验最小时间
+minhandsbackg:
+  type:xpath
+  value:".//div/div[2]/div[8]/div[4]/div[1]/div/input"
+# 工作经验最大时间
+maxhandsbackg:
+  type:xpath
+  value:".//div/div[2]/div[8]/div[4]/div[1]/div/input"
+# 最小 年龄
+minage: 
+  type:xpath
+  value:".//div/div[2]/div[9]/div[2]/div[1]/div/input"
+# 最大年龄
+maxage: 
+  type:xpath
+  value:".//div/div[2]/div[9]/div[2]/div[2]/div/input"
+# 性别
+sex:
+  type:xpath
+  value:".//div/div[2]/div[9]/div[4]/select"
+# 最低学历
+mineducation:
+  type:xpath
+  value:".//div/div[2]/div[10]/div[2]/select"
+# 行业背景要求
+industbackground:  
+  type:xpath
+  value:".//div/div[2]/div[10]/div[4]/div"  
+# 岗位职责
+jobresponsib:
+  type:xpath
+  value:".//div/div[2]/div[11]/div[2]/textarea"
+# 任职资格
+postqualific:
+  type:xpath
+  value:".//div/div[2]/div[12]/div[2]/textarea"
+#职位亮点输入框
+positionhigh:
+  type:xpath
+  value:".//div/div[2]/div[13]/div[2]/input"  
+#职位亮点添加按鈕
+positionbut:
+  type:xpath
+  value:".//div/div[2]/div[13]/div[2]/button"   
+#岗位特殊要求
+positionrequire:
+  type:xpath
+  value:".//div/div[2]/div[14]/div[2]/input"  
+  
+# 岗位人数
+positionnum:  
+  type:xpath
+  value:".//div/div[2]/div[16]/div[1]/div[2]/input"  
+# 费用标准
+standardcost:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[1]/div[4]/div[1]/select"
+# 费用
+cost:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[1]/div[4]/div[2]/div/input"
+#职位月薪起点
+positionmax:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[2]/div[2]/div[1]/div/input"  
+#职位月薪最大范围
+positionmin:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[2]/div[2]/div[2]/div/input"   
+#发放月数
+positionrequire:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[2]/div[4]/select"    
+# 汇报对象
+reportobject:  
+  type:xpath
+  value:".//div/div[2]/div[16]/div[3]/div[2]/input"  
+# 下属人数
+subordinates:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[3]/div[4]/input"
+# 工作城市
+workingcity:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[4]/div[2]/select"  
+# 工作地点
+workingadrees:  
+  type:xpath
+  value:".//div/div[2]/div[16]/div[4]/div[4]/input"  
+# 顾问人数
+consultantsnum:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[5]/div[2]/input"
+# 顾问最低级别
+consultantslevel:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[5]/div[4]/select"  
+# 对求职者是否公开
+publicjobseeker:
+  type:xpath
+  value:".//div/div[2]/div[16]/div[6]/div[2]/select"  
+# 新增职位城市按钮
+addcity:
+  type:xpath
+  value:".//div/div[2]/div[17]/div/button"
+# 保存职位按钮
+positionok:
+  type:xpath
+  value:".//div/div[2]/div[18]/div/button"  
+  
+  
+  
