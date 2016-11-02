@@ -34,7 +34,7 @@ public class AddProject extends TestBase{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		    
+
 		    WebElement city = driver.findElement(By.xpath(".//div[2]/div[7]/div[2]/div/div"));
 		    city.click();
 		    try {
@@ -53,10 +53,8 @@ public class AddProject extends TestBase{
 			}
 		    WebElement shanghai = driver.findElement(By.xpath(".//*[@id='cityModel']/div/div/div[3]/button"));
 		    shanghai.click();
-		   	    
-				
+
+
 	}
-	
-	
-	
+
 }

@@ -131,6 +131,3 @@ addcity:
 positionok:
   type:xpath
   value:".//div/div[2]/div[18]/div/button"  
-  
-  
-  

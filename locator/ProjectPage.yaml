@@ -155,7 +155,7 @@ upcompanylogo:
 #选择文件按钮
 choosebutton:
   type:xpath
-  value:".//*[@id='upload']"
+  value:".//*[@class='pull-left uploadBtn']"
 #选择文件输入框
 chooselogo:
   type:xpath
