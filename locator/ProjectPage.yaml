@@ -202,8 +202,22 @@ recomreport:
 interview: 
   type:xpath
   value:".//div/div[2]/div[29]/div[4]/select"  
-  
-
+#是否笔试
+written:
+  type:xpath
+  value:".//div/div/div[2]/div[30]/div[2]/select"  
+#面试时间
+interviewtime: 
+  type:xpath
+  value:".//div/div/div[2]/div[30]/div[4]/select"
+#面试流程
+interviewprocess:
+  type:xpath
+  value:".//div/div[2]/div[31]/div[2]/select"
+#offer发放周期
+offerweek:
+  type:xpath
+  value:".//div/div[2]/div[31]/div[4]/select"  
 # 其他信息
 othermessage:
   type:xpath
@@ -212,4 +226,8 @@ othermessage:
 preserved:
   type:xpath
   value:".//div/div[2]/div[33]/div/button" 
+# 提示窗口确定按钮
+promptok:
+  type:xpath
+  value:".//*[@id='layui-layer1']/div[3]/a"
   

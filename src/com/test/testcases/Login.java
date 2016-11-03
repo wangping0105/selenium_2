@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import com.test.base.TestBase;
 import com.test.page.LoginPage;
+import com.test.page.PositionPage;
 import com.test.page.ProjectPage;
 import com.test.util.Assertion;
 import com.test.util.Log;
@@ -18,7 +19,7 @@ public class Login extends TestBase {
 	@Test(dataProvider = "providerMethod")
 	public void testLogin(Map<String, String> param) {
 		Assertion.flag = true;
-		System.out.println(param.get("url"));
+		Log.logInfo(param.get("url"));
 		this.goTo(param.get("url"));
 		LoginPage lp = new LoginPage(driver);
 		//
@@ -41,10 +42,13 @@ public class Login extends TestBase {
 	@Test(dataProvider = "providerMethod")
 	public void testMddProject(Map<String, String> param) {
 		ProjectPage pdriver = new ProjectPage(driver);
+		Log.logInfo("--------------------选择项目管理导航菜单！-------------------------");
 		WebElement project = pdriver.getElement("project");
 		project.click();
+		Log.logInfo("--------------------点击新增项目！-------------------------");
 		WebElement add_project = pdriver.getElement("addproject");
 		add_project.click();
+		Log.logInfo("--------------------导入合同信息！-------------------------");
 		pdriver.getElement("contractnumber").sendKeys(param.get("contractnumber")); // 输入合同编号
 		try {
 			Thread.sleep(5000);
@@ -61,10 +65,11 @@ public class Login extends TestBase {
 			e.printStackTrace();
 		}
 
+		Log.logInfo("--------------------判断合同是否是第一次建项！-------------------------");
 		boolean getcontractcity = pdriver.getElement("opencontractcity").isEnabled();
 		boolean contractcity = pdriver.getElement("opencontractcity").isDisplayed();
-		System.out.println(getcontractcity);
-		System.out.println(contractcity);
+		Log.logInfo(getcontractcity);
+		Log.logInfo(contractcity);
 		if (getcontractcity == true) {
 			WebElement opencontractcity = pdriver.getElement("opencontractcity"); // 选择合同执行城市
 			opencontractcity.click();
@@ -88,6 +93,7 @@ public class Login extends TestBase {
 
 		}
 
+		Log.logInfo("--------------------填写项目信息！！-------------------------");
 		WebElement city = pdriver.getElement("executecity"); // 选择项目执行城市
 		city.click();
 		try {
@@ -118,6 +124,7 @@ public class Login extends TestBase {
 			e.printStackTrace();
 		}
 
+		Log.logInfo("--------------------填写费用与质保期！-------------------------");
 		Select selservicetype = new Select(pdriver.getElement("servicetype"));
 		selservicetype.selectByIndex(1); // 选择服务类型
 		Select selexpstandards = new Select(pdriver.getElement("expstandards"));
@@ -139,11 +146,13 @@ public class Login extends TestBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		Log.logInfo("--------------------第一次建项需要填写公司信息！-------------------------");
 		WebElement companyshort = pdriver.getElement("companyshort");
 		boolean flag = companyshort.isEnabled();
-		System.out.println(flag);
+		Log.logInfo(flag);
 		if (flag == true) {
-			System.out.println("添加公司信息");
+			Log.logInfo("添加公司信息");
 			pdriver.getElement("companyshort").sendKeys(param.get("companyshort")); // 输入公司简称
 			Select naturecompany = new Select(pdriver.getElement("naturecompany"));
 			naturecompany.selectByIndex(1); // 选择公司性质
@@ -186,34 +195,37 @@ public class Login extends TestBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("----------上传公司logo-------------");
+			Log.logInfo("----------------------上传公司logo--------------------------");
 			WebElement upcompanylogo = pdriver.getElement("upcompanylogo"); // 打开上传公司logo窗口
 			upcompanylogo.click();
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			boolean one = pdriver.getElement("chooselogo").isDisplayed();
 			boolean two = pdriver.getElement("chooselogo").isEnabled();
-			System.out.println(one);
-			System.out.println(two);
+			Log.logInfo(one);
+			Log.logInfo(two);
 			WebElement choosebutton = pdriver.getElement("choosebutton");
 			choosebutton.click();
 
 			// 调用 autoit ，选择文件哦， 需要写脚本的 http://blog.csdn.net/lily_xl/article/details/51723407
 			try {
-				Runtime.getRuntime().exec("files/upload.exe");
+				Runtime.getRuntime().exec("files/img_ico1.exe");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Log.logInfo("文件上传完毕！");
 
-//			JavascriptExecutor j = (JavascriptExecutor) pdriver;
-//
-//			j.executeScript("document.findElementById('123').style.display='block'; ");
-			pdriver.getElement("chooselogo").sendKeys(param.get("chooselogo")); // 写入logo文件地址
 			String url = pdriver.getElement("chooselogo").getText();
 			try {
 				Thread.sleep(1000);
@@ -221,11 +233,13 @@ public class Login extends TestBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(url);
+			Log.logInfo(url);
 			WebElement uploadok = pdriver.getElement("uploadok");
 			uploadok.click();
 
 		}
+
+		Log.logInfo("--------------------填写薪资福利！-------------------------");
 		Select selmonthsalary = new Select(pdriver.getElement("monthsalary"));
 		selmonthsalary.selectByIndex(1); // 月薪竞争力
 		Select selprobationary = new Select(pdriver.getElement("probationary"));
@@ -238,7 +252,7 @@ public class Login extends TestBase {
 		selannualbonus.selectByIndex(1); // 年终奖
 		Select selovertime = new Select(pdriver.getElement("overtime"));
 		selovertime.selectByIndex(1); // 加班处理
-//		pdriver.getElement("otherwelfare").sendKeys(param.get("otherwelfare")); // 其他福利
+		pdriver.getElement("otherwelfare").sendKeys(param.get("otherwelfare")); // 其他福利
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -246,10 +260,26 @@ public class Login extends TestBase {
 			e.printStackTrace();
 		}
 
-//		pdriver.getElement("othermessage").sendKeys(param.get("othermessage")); // 其他信息
+		Log.logInfo("--------------------填写执行流程！-------------------------");
+		Select recomreport = new Select(pdriver.getElement("recomreport"));
+		recomreport.selectByIndex(1); // 推荐报告反馈周期
+		Select interview = new Select(pdriver.getElement("interview"));
+		interview.selectByIndex(1); // 面试反馈周期
+		Select written = new Select(pdriver.getElement("written"));
+		written.selectByIndex(1); // 是否笔试
+		Select interviewtime = new Select(pdriver.getElement("interviewtime"));
+		interviewtime.selectByIndex(1); // 面试时间
+		Select interviewprocess = new Select(pdriver.getElement("interviewprocess"));
+		interviewprocess.selectByIndex(1); // 面试流程
+		Select offerweek = new Select(pdriver.getElement("offerweek"));
+		offerweek.selectByIndex(0); // offer发放周期
+		pdriver.getElement("othermessage").sendKeys(param.get("othermessage")); // 其他信息
 
 		WebElement projectok = pdriver.getElement("preserved"); // 保存项目
 		projectok.click();
+		Log.logInfo("--------------------薪资项目成功！-------------------------");
+		WebElement promptok = pdriver.getElement("promptok");
+		promptok.click(); // 关闭提示框
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -259,28 +289,115 @@ public class Login extends TestBase {
 
 	}
 
-//	@Test(dataProvider = "providerMethod")
-//	public void testNddPosition(Map<String, String> param) {
-//		PositionPage posdriver = new PositionPage(driver);
-//		WebElement project = posdriver.getElement("position");
-//		project.click();
-//		try {
-//			Thread.sleep(2000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		WebElement add_position = posdriver.getElement("addposition");
-//		add_position.click();
-//		Select selovertime = new Select(posdriver.getElement("projectname"));
-//		selovertime.selectByIndex(1); // 选择项目名称
-//		try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//	}
+	@Test(dataProvider = "providerMethod")
+	public void testNddPosition(Map<String, String> param) {
+		PositionPage posdriver = new PositionPage(driver); // 这是个page类的实例，不是driver
+		Log.logInfo("--------------------选择职位导航菜单！-------------------------");
+		WebElement project = posdriver.getElement("position");
+		project.click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.logInfo("--------------------点击新增职位！-------------------------");
+		WebElement add_position = posdriver.getElement("addposition");
+		add_position.click();
+		Log.logInfo("--------------------选择项目名称！-------------------------");
+		Select selovertime = new Select(posdriver.getElement("projectname"));
+		selovertime.selectByIndex(1); // 选择项目名称
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Log.logInfo("--------------------填写职位信息！-------------------------");
+		posdriver.getElement("positionname").sendKeys(param.get("positionname"));
+		Select positionlevel = new Select(posdriver.getElement("positionlevel"));
+		positionlevel.selectByIndex(2); // 岗位级别
+		Select funcclass = new Select(posdriver.getElement("funcclass"));
+		funcclass.selectByIndex(0); // 职能分类
+		posdriver.getElement("minhandsbackg").sendKeys(param.get("minhandsbackg")); //工作经验
+		posdriver.getElement("maxhandsbackg").sendKeys(param.get("maxhandsbackg")); //工作经验
+		posdriver.getElement("minage").sendKeys(param.get("minage"));// 年龄
+		posdriver.getElement("maxage").sendKeys(param.get("maxage"));// 年龄
+		Select sex = new Select(posdriver.getElement("sex"));
+		sex.selectByIndex(2); // 性别
+		Select mineducation = new Select(posdriver.getElement("mineducation"));
+		mineducation.selectByIndex(2); // 最低学历
+
+		WebElement industbackground = posdriver.getElement("industbackground");
+		industbackground.click(); // 选择所属行业背景
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		WebElement choosebackground = posdriver.getElement("choosebackground");
+		choosebackground.click(); //选择所属行业背景
+		WebElement closebackground = posdriver.getElement("closebackground");
+		closebackground.click(); // 关闭所属行业背景窗口
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		posdriver.getElement("jobresponsib").sendKeys(param.get("jobresponsib"));// 岗位职责
+		posdriver.getElement("postqualific").sendKeys(param.get("postqualific"));// 任职资格
+		posdriver.getElement("positionhigh").sendKeys(param.get("positionhigh"));//职位亮点
+		WebElement positionbut = posdriver.getElement("positionbut");
+		positionbut.click(); // 添加职位亮点
+		posdriver.getElement("positionrequire").sendKeys(param.get("positionrequire"));//职位亮点
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Log.logInfo("-----------------------职位城市与岗位详情！---------------------------------");
+		posdriver.getElement("positionnum").sendKeys(param.get("positionnum"));//岗位人数
+		Select standardcost = new Select(posdriver.getElement("standardcost"));
+		standardcost.selectByIndex(1); // 费用标准
+		posdriver.getElement("cost").sendKeys(param.get("cost"));//费用
+		posdriver.getElement("positionmix").sendKeys(param.get("positionmix"));//职位月薪
+		posdriver.getElement("positionmax").sendKeys(param.get("positionmax"));//职位月薪
+		Select getmonth = new Select(posdriver.getElement("getmonth"));
+		getmonth.selectByIndex(1); // 发放月数
+		posdriver.getElement("reportobject").sendKeys(param.get("reportobject"));//汇报对象
+		posdriver.getElement("subordinates").sendKeys(param.get("subordinates"));//下属人数
+		Select workingcity = new Select(posdriver.getElement("workingcity"));
+		workingcity.selectByIndex(1);// 工作城市
+		posdriver.getElement("workingadrees").sendKeys(param.get("workingadrees"));//工作地点
+		posdriver.getElement("consultantsnum").sendKeys(param.get("consultantsnum"));//顾问人数
+		Select consultantslevel = new Select(posdriver.getElement("consultantslevel"));
+		consultantslevel.selectByIndex(1); // 顾问最低级别
+		Select publicjobseeker = new Select(posdriver.getElement("publicjobseeker"));
+		publicjobseeker.selectByIndex(1); // 是否对求职者公开
+		WebElement positionok = posdriver.getElement("positionok");
+	    positionok.click(); // 保存职位
+
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		WebElement promptok = posdriver.getElement("promptok");
+		promptok.click(); // 关闭提示框
+		Log.logInfo("------------------------职位新增成功！---------------------------------");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

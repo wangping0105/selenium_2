@@ -19,7 +19,7 @@ positionlevel:
   type:xpath
   value:".//div/div[2]/div[7]/div[4]/select"
 # 职能分类
-funcclassification:
+funcclass:
   type:xpath
   value:".//div/div[2]/div[8]/div[2]/select"
 # 工作经验最小时间
@@ -29,7 +29,7 @@ minhandsbackg:
 # 工作经验最大时间
 maxhandsbackg:
   type:xpath
-  value:".//div/div[2]/div[8]/div[4]/div[1]/div/input"
+  value:".//div/div[2]/div[8]/div[4]/div[2]/div/input"
 # 最小 年龄
 minage: 
   type:xpath
@@ -49,7 +49,15 @@ mineducation:
 # 行业背景要求
 industbackground:  
   type:xpath
-  value:".//div/div[2]/div[10]/div[4]/div"  
+  value:".//div/div[2]/div[10]/div[4]/div/div"  
+#选择行业背景
+choosebackground:
+  type:xpath
+  value:".//*[@id='industryModel']/div/div/div[2]/div/a[1]"
+# 关闭行业背景选择窗口
+closebackground:
+  type:xpath
+  value:".//*[@id='industryModel']/div/div/div[3]/button"
 # 岗位职责
 jobresponsib:
   type:xpath
@@ -84,15 +92,15 @@ cost:
   type:xpath
   value:".//div/div[2]/div[16]/div[1]/div[4]/div[2]/div/input"
 #职位月薪起点
-positionmax:
+positionmix:
   type:xpath
   value:".//div/div[2]/div[16]/div[2]/div[2]/div[1]/div/input"  
 #职位月薪最大范围
-positionmin:
+positionmax:
   type:xpath
   value:".//div/div[2]/div[16]/div[2]/div[2]/div[2]/div/input"   
 #发放月数
-positionrequire:
+getmonth:
   type:xpath
   value:".//div/div[2]/div[16]/div[2]/div[4]/select"    
 # 汇报对象
@@ -131,3 +139,7 @@ addcity:
 positionok:
   type:xpath
   value:".//div/div[2]/div[18]/div/button"  
+# 提示窗口确定按钮
+promptok:
+  type:xpath
+  value:".//*[@id='layui-layer1']/div[3]/a"
