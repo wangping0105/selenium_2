@@ -41,39 +41,39 @@ public class Login extends TestBase {
 
 	@Test(dataProvider = "providerMethod")
 	public void testMddProject(Map<String, String> param) {
-		ProjectPage pdriver = new ProjectPage(driver);
+		ProjectPage project_page = new ProjectPage(driver);
 		Log.logInfo("--------------------选择项目管理导航菜单！-------------------------");
-		WebElement project = pdriver.getElement("project");
+		WebElement project = project_page.getElement("project");
 		project.click();
 		Log.logInfo("--------------------点击新增项目！-------------------------");
-		WebElement add_project = pdriver.getElement("addproject");
+		WebElement add_project = project_page.getElement("addproject");
 		add_project.click();
 		Log.logInfo("--------------------导入合同信息！-------------------------");
-		pdriver.getElement("contractnumber").sendKeys(param.get("contractnumber")); // 输入合同编号
+		project_page.getElement("contractnumber").sendKeys("NBJZP201606241050"); // 输入合同编号
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WebElement ok = pdriver.getElement("contractok"); // 导入合同信息
+		WebElement ok = project_page.getElement("contractok"); // 导入合同信息
 		ok.click();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		Log.logInfo("--------------------判断合同是否是第一次建项！-------------------------");
-		WebElement contractcity = pdriver.getElement("amountadvance");
+		WebElement contractcity = project_page.getElement("amountadvance");
 
-		System.out.println(contractcity.getAttribute("disabled"));
+		// 判断预付金额是否已经存在
+		boolean has_contractcity = contractcity.getAttribute("disabled").equals("true");
 
-
-		if (contractcity.getAttribute("disabled")=="disabled"){
+		if (!has_contractcity){
             System.out.println("选择合同执行城市");
-			WebElement opencontractcity = pdriver.getElement("opencontractcity"); // 选择合同执行城市
+			WebElement opencontractcity = project_page.getElement("opencontractcity"); // 选择合同执行城市
 			opencontractcity.click();
 			try {
 				Thread.sleep(1000);
@@ -81,9 +81,9 @@ public class Login extends TestBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			WebElement chocontcity = pdriver.getElement("chocontcity"); // 选择合同执行城市窗口选择城市
+			WebElement chocontcity = project_page.getElement("chocontcity"); // 选择合同执行城市窗口选择城市
 			chocontcity.click();
-			WebElement chocontcityok = pdriver.getElement("chocontcityok"); // 关闭合同执行城市窗口
+			WebElement chocontcityok = project_page.getElement("chocontcityok"); // 关闭合同执行城市窗口
 			chocontcityok.click();
 			try {
 				Thread.sleep(1000);
@@ -91,12 +91,12 @@ public class Login extends TestBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			pdriver.getElement("amountadvance").sendKeys(param.get("amountadvance")); // 输入预付金额
+			project_page.getElement("amountadvance").sendKeys(param.get("amountadvance")); // 输入预付金额
 
 		}
 
 		Log.logInfo("--------------------填写项目信息！！-------------------------");
-		WebElement city = pdriver.getElement("executecity"); // 选择项目执行城市
+		WebElement city = project_page.getElement("executecity"); // 选择项目执行城市
 		city.click();
 		try {
 			Thread.sleep(1000);
@@ -104,21 +104,21 @@ public class Login extends TestBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		WebElement choose = pdriver.getElement("choosecity"); // 选择项目执行城市窗口选择城市
+		WebElement choose = project_page.getElement("choosecity"); // 选择项目执行城市窗口选择城市
 		choose.click();
-		WebElement shanghai = pdriver.getElement("choosecityok"); // 关闭项目执行城市选择窗口
+		WebElement shanghai = project_page.getElement("choosecityok"); // 关闭项目执行城市选择窗口
 		shanghai.click();
 
-		Select selposition = new Select(pdriver.getElement("pospattern"));
+		Select selposition = new Select(project_page.getElement("pospattern"));
 		selposition.selectByIndex(1); // 选择岗位用工方式
-		Select selproject = new Select(pdriver.getElement("projectdesc"));
+		Select selproject = new Select(project_page.getElement("projectdesc"));
 		selproject.selectByIndex(1); // 选择项目紧急程度
 
-		pdriver.getElement("projectname").sendKeys(param.get("projectname")); // 填写项目名称
-		Select selmanager = new Select(pdriver.getElement("accountmanager"));
+		project_page.getElement("projectname").sendKeys(param.get("projectname")); // 填写项目名称
+		Select selmanager = new Select(project_page.getElement("accountmanager"));
 		selmanager.selectByVisibleText("王玲"); // 选择客户经理
-		WebElement prodescription = pdriver.getElement("prodescription");
-		pdriver.getElement("prodescription").sendKeys(param.get("prodescription")); // 填写项目介绍
+		WebElement prodescription = project_page.getElement("prodescription");
+		project_page.getElement("prodescription").sendKeys(param.get("prodescription")); // 填写项目介绍
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -127,9 +127,9 @@ public class Login extends TestBase {
 		}
 
 		Log.logInfo("--------------------填写费用与质保期！-------------------------");
-		Select selservicetype = new Select(pdriver.getElement("servicetype"));
+		Select selservicetype = new Select(project_page.getElement("servicetype"));
 		selservicetype.selectByIndex(1); // 选择服务类型
-		Select selexpstandards = new Select(pdriver.getElement("expstandards"));
+		Select selexpstandards = new Select(project_page.getElement("expstandards"));
 		selexpstandards.selectByIndex(2); // 选择费用标准
 		try {
 			Thread.sleep(1000);
@@ -137,10 +137,10 @@ public class Login extends TestBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		pdriver.getElement("expenses").sendKeys(param.get("expenses")); // 填写费用标准
-		pdriver.getElement("paymenttype").sendKeys("5"); // 填写付费类型
-		pdriver.getElement("Percentpay").sendKeys("100"); // 支付百分比
-		Select selguaranteedtime = new Select(pdriver.getElement("guaranteedtime"));
+		project_page.getElement("expenses").sendKeys(param.get("expenses")); // 填写费用标准
+		project_page.getElement("paymenttype").sendKeys("5"); // 填写付费类型
+		project_page.getElement("Percentpay").sendKeys("100"); // 支付百分比
+		Select selguaranteedtime = new Select(project_page.getElement("guaranteedtime"));
 		selguaranteedtime.selectByIndex(1); // 选择质保期
 		try {
 			Thread.sleep(1000);
@@ -150,15 +150,15 @@ public class Login extends TestBase {
 		}
 
 		Log.logInfo("--------------------第一次建项需要填写公司信息！-------------------------");
-		WebElement companyshort = pdriver.getElement("companyshort");
+		WebElement companyshort = project_page.getElement("companyshort");
 		boolean flag = companyshort.isEnabled();
 		Log.logInfo(flag);
 		if (flag == true) {
 			Log.logInfo("添加公司信息");
-			pdriver.getElement("companyshort").sendKeys(param.get("companyshort")); // 输入公司简称
-			Select naturecompany = new Select(pdriver.getElement("naturecompany"));
+			project_page.getElement("companyshort").sendKeys(param.get("companyshort")); // 输入公司简称
+			Select naturecompany = new Select(project_page.getElement("naturecompany"));
 			naturecompany.selectByIndex(1); // 选择公司性质
-			WebElement ownedindustry = pdriver.getElement("ownedindustry");
+			WebElement ownedindustry = project_page.getElement("ownedindustry");
 			ownedindustry.click(); // 选择所属行业
 			try {
 				Thread.sleep(1000);
@@ -166,30 +166,30 @@ public class Login extends TestBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			WebElement chooseindustry = pdriver.getElement("chooseindustry");
+			WebElement chooseindustry = project_page.getElement("chooseindustry");
 			chooseindustry.click();
-			WebElement industryok = pdriver.getElement("industryok");
+			WebElement industryok = project_page.getElement("industryok");
 			industryok.click(); // 关闭所属行业
 
-			pdriver.getElement("creattime").sendKeys(param.get("creattime")); // 成立时间
+			project_page.getElement("creattime").sendKeys(param.get("creattime")); // 成立时间
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Select investinst = new Select(pdriver.getElement("investinst"));
+			Select investinst = new Select(project_page.getElement("investinst"));
 			investinst.selectByIndex(1); // 投资机构
-			Select enterprisescale = new Select(pdriver.getElement("enterprisescale"));
+			Select enterprisescale = new Select(project_page.getElement("enterprisescale"));
 			enterprisescale.selectByIndex(1); // 企业规模
-			Select teamsize = new Select(pdriver.getElement("teamsize"));
+			Select teamsize = new Select(project_page.getElement("teamsize"));
 			teamsize.selectByIndex(1); // 技术团队规模
-			pdriver.getElement("hrcontacts").sendKeys(param.get("hrcontacts")); // HR联系人
-			pdriver.getElement("continformation").sendKeys(param.get("continformation")); // 联系方式
-			pdriver.getElement("companyadress").sendKeys(param.get("companyadress")); // 公司地址
-			pdriver.getElement("landmarknearby").sendKeys(param.get("landmarknearby")); // 附近地标
-			pdriver.getElement("compintroduction").sendKeys(param.get("compintroduction")); // 公司介绍
-			pdriver.getElement("linkwebsite").sendKeys(param.get("linkwebsite")); // 官网链接
+			project_page.getElement("hrcontacts").sendKeys(param.get("hrcontacts")); // HR联系人
+			project_page.getElement("continformation").sendKeys(param.get("continformation")); // 联系方式
+			project_page.getElement("companyadress").sendKeys(param.get("companyadress")); // 公司地址
+			project_page.getElement("landmarknearby").sendKeys(param.get("landmarknearby")); // 附近地标
+			project_page.getElement("compintroduction").sendKeys(param.get("compintroduction")); // 公司介绍
+			project_page.getElement("linkwebsite").sendKeys(param.get("linkwebsite")); // 官网链接
 
 			try {
 				Thread.sleep(1000);
@@ -198,7 +198,7 @@ public class Login extends TestBase {
 				e.printStackTrace();
 			}
 			Log.logInfo("----------------------上传公司logo--------------------------");
-			WebElement upcompanylogo = pdriver.getElement("upcompanylogo"); // 打开上传公司logo窗口
+			WebElement upcompanylogo = project_page.getElement("upcompanylogo"); // 打开上传公司logo窗口
 			upcompanylogo.click();
 			try {
 				Thread.sleep(2000);
@@ -206,11 +206,11 @@ public class Login extends TestBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			boolean one = pdriver.getElement("chooselogo").isDisplayed();
-			boolean two = pdriver.getElement("chooselogo").isEnabled();
+			boolean one = project_page.getElement("chooselogo").isDisplayed();
+			boolean two = project_page.getElement("chooselogo").isEnabled();
 			Log.logInfo(one);
 			Log.logInfo(two);
-			WebElement choosebutton = pdriver.getElement("choosebutton");
+			WebElement choosebutton = project_page.getElement("choosebutton");
 			choosebutton.click();
 
 			// 调用 autoit ，选择文件哦， 需要写脚本的 http://blog.csdn.net/lily_xl/article/details/51723407
@@ -228,7 +228,7 @@ public class Login extends TestBase {
 			}
 			Log.logInfo("文件上传完毕！");
 
-			String url = pdriver.getElement("chooselogo").getText();
+			String url = project_page.getElement("chooselogo").getText();
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -236,25 +236,25 @@ public class Login extends TestBase {
 				e.printStackTrace();
 			}
 			Log.logInfo(url);
-			WebElement uploadok = pdriver.getElement("uploadok");
+			WebElement uploadok = project_page.getElement("uploadok");
 			uploadok.click();
 
 		}
 
 		Log.logInfo("--------------------填写薪资福利！-------------------------");
-		Select selmonthsalary = new Select(pdriver.getElement("monthsalary"));
+		Select selmonthsalary = new Select(project_page.getElement("monthsalary"));
 		selmonthsalary.selectByIndex(1); // 月薪竞争力
-		Select selprobationary = new Select(pdriver.getElement("probationary"));
+		Select selprobationary = new Select(project_page.getElement("probationary"));
 		selprobationary.selectByIndex(1); // 试用期薪资
-		Select selperiod = new Select(pdriver.getElement("period"));
+		Select selperiod = new Select(project_page.getElement("period"));
 		selperiod.selectByIndex(1); // 调薪周期
-		Select selsocialsecurity = new Select(pdriver.getElement("socialsecurity"));
+		Select selsocialsecurity = new Select(project_page.getElement("socialsecurity"));
 		selsocialsecurity.selectByIndex(1); // 社保公积金
-		Select selannualbonus = new Select(pdriver.getElement("annualbonus"));
+		Select selannualbonus = new Select(project_page.getElement("annualbonus"));
 		selannualbonus.selectByIndex(1); // 年终奖
-		Select selovertime = new Select(pdriver.getElement("overtime"));
+		Select selovertime = new Select(project_page.getElement("overtime"));
 		selovertime.selectByIndex(1); // 加班处理
-		pdriver.getElement("otherwelfare").sendKeys(param.get("otherwelfare")); // 其他福利
+		project_page.getElement("otherwelfare").sendKeys(param.get("otherwelfare")); // 其他福利
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -263,24 +263,24 @@ public class Login extends TestBase {
 		}
 
 		Log.logInfo("--------------------填写执行流程！-------------------------");
-		Select recomreport = new Select(pdriver.getElement("recomreport"));
+		Select recomreport = new Select(project_page.getElement("recomreport"));
 		recomreport.selectByIndex(1); // 推荐报告反馈周期
-		Select interview = new Select(pdriver.getElement("interview"));
+		Select interview = new Select(project_page.getElement("interview"));
 		interview.selectByIndex(1); // 面试反馈周期
-		Select written = new Select(pdriver.getElement("written"));
+		Select written = new Select(project_page.getElement("written"));
 		written.selectByIndex(1); // 是否笔试
-		Select interviewtime = new Select(pdriver.getElement("interviewtime"));
+		Select interviewtime = new Select(project_page.getElement("interviewtime"));
 		interviewtime.selectByIndex(1); // 面试时间
-		Select interviewprocess = new Select(pdriver.getElement("interviewprocess"));
+		Select interviewprocess = new Select(project_page.getElement("interviewprocess"));
 		interviewprocess.selectByIndex(1); // 面试流程
-		Select offerweek = new Select(pdriver.getElement("offerweek"));
+		Select offerweek = new Select(project_page.getElement("offerweek"));
 		offerweek.selectByIndex(0); // offer发放周期
-		pdriver.getElement("othermessage").sendKeys(param.get("othermessage")); // 其他信息
+		project_page.getElement("othermessage").sendKeys(param.get("othermessage")); // 其他信息
 
-		WebElement projectok = pdriver.getElement("preserved"); // 保存项目
-		projectok.click();
+		WebElement projectok = project_page.getElement("preserved"); // 保存项目
+//		projectok.click();
 		Log.logInfo("--------------------薪资项目成功！-------------------------");
-		WebElement promptok = pdriver.getElement("promptok");
+		WebElement promptok = project_page.getElement("promptok");
 		promptok.click(); // 关闭提示框
 		try {
 			Thread.sleep(5000);
