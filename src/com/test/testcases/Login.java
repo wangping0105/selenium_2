@@ -59,18 +59,20 @@ public class Login extends TestBase {
 		WebElement ok = pdriver.getElement("contractok"); // 导入合同信息
 		ok.click();
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		Log.logInfo("--------------------判断合同是否是第一次建项！-------------------------");
-		boolean getcontractcity = pdriver.getElement("opencontractcity").isEnabled();
-		boolean contractcity = pdriver.getElement("opencontractcity").isDisplayed();
-		Log.logInfo(getcontractcity);
-		Log.logInfo(contractcity);
-		if (getcontractcity == true) {
+		WebElement contractcity = pdriver.getElement("amountadvance");
+
+		System.out.println(contractcity.getAttribute("disabled"));
+
+
+		if (contractcity.getAttribute("disabled")=="disabled"){
+            System.out.println("选择合同执行城市");
 			WebElement opencontractcity = pdriver.getElement("opencontractcity"); // 选择合同执行城市
 			opencontractcity.click();
 			try {
