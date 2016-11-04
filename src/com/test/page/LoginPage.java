@@ -7,7 +7,8 @@ import com.test.base.Page;
 public class LoginPage extends Page{
 
 	public LoginPage(WebDriver driver) {
-		super(driver);		
+		super(driver);
 	}
+
 
 }

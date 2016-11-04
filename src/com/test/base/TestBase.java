@@ -13,6 +13,7 @@ import org.testng.annotations.DataProvider;
 
 import com.test.bean.Config;
 import com.test.bean.Global;
+import com.test.page.LoginPage;
 import com.test.util.ParseXml;
 import com.test.util.Util;
 
@@ -87,4 +88,46 @@ public class TestBase {
 			Util.sleep(1);
 		}
 	}
+
+	public void simple_login(String username, String password){
+		Map<String, String> param = golbalData();
+		LoginPage lp = new LoginPage(driver);
+		this.goTo(param.get("url"));
+		if(username.equals(null)){
+			lp.getElement("username").sendKeys(param.get("username"));
+		}else{
+			lp.getElement("username").sendKeys(username);
+		}
+
+		if(password.equals(null)){
+			lp.getElement("password").sendKeys(param.get("password"));
+		}else{
+			lp.getElement("password").sendKeys(password);
+		}
+
+		lp.getElement("login_button").click();
+	}
+
+	public Map<String, String> golbalData(){
+		ParseXml px1 = new ParseXml("test-data/global.xml");
+		Element element = px1.getElementObject("/*/common");
+		Map<String, String> commonMap1 = px1.getChildrenInfoByElement(element);
+		String methodName = "login";
+		List<Element> elements = px1.getElementObjects("/*/"+methodName);
+		Map<String, String> mergeCommon = null;
+		Object[][] object = new Object[elements.size()][];
+		for (int i =0; i<elements.size(); i++) {
+			mergeCommon = this.getMergeMapData(px1.getChildrenInfoByElement(elements.get(i)), commonMap1);
+			break;
+		}
+
+		return mergeCommon;
+	}
+
+	public static void main(String[] args){
+		TestBase t = new TestBase();
+//		Log.logInfo(t.golbalData());
+		t.golbalData();
+    }
+
 }

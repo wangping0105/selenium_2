@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
-	<url>http://172.17.0.110/</url>
+   	<common></common>
+	<login>
+		<url>http://172.17.0.110/</url>
+		<username>wlrc</username>
+		<password>ymbrc2016</password>
+	</login>
 </data>
