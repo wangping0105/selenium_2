@@ -2,9 +2,11 @@ package com.test.testcases;
 
 import java.util.Map;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.test.base.TestBase;
+import com.test.page.LoginPage;
 import com.test.util.Assertion;
 import com.test.util.Log;
 
@@ -16,15 +18,20 @@ public class Login extends TestBase {
 		Log.logInfo("testLogin" + param.get("url"));
 		this.simple_login(param.get("username"), param.get("password"));
 
+		LoginPage lp = new LoginPage(driver);
+
+		String errorMsg = lp.getElementNoWait("error_info").getText();
+		Log.logInfo(!errorMsg.equals(""));
+		if(!errorMsg.equals("")){
+			Assert.assertEquals(errorMsg, "用户名或者登录密码输入错误");
+		}
+
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// String errorMsg = lp.getElement("loginpwd_error").getText();
-		// Assertion.verifyEquals(errorMsg, "您输入的账户名和密码不匹配，请重新输入");
-
 	}
 
 //	@Test(dataProvider = "providerMethod")

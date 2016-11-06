@@ -11,6 +11,6 @@ login_button:
   type:id
   value:btn-login
 # 报错信息
-loginpwd_error:
+error_info:
   type:xpath
-  value:".//*[@id='loginForm']/div[3]/span"
+  value:".//*[contains(@class,'ajaxFormError')]"

@@ -8,7 +8,6 @@ import java.util.Map;
 import org.dom4j.Element;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
@@ -83,12 +82,8 @@ public class TestBase {
 			driver = selenium.getDriver();
 		}
 	}
-	@AfterClass
-	public void saveDriver(){
-		save_driver = driver;
-	}
 
-	@AfterSuite
+	@AfterClass
 	public void closeDriver(){
 		if(driver!=null){
 			driver.close();
@@ -105,11 +100,13 @@ public class TestBase {
 		}
 	}
 
+
 	public void simple_login(String username, String password){
 		Map<String, String> param = golbalData();
 		LoginPage lp = new LoginPage(driver);
 		this.goTo(param.get("url"));
 		Log.logInfo("username 是 "+ username + "pwd 是" + password);
+
 		if(username.equals(null)){
 			lp.getElement("username").sendKeys(param.get("username"));
 		}else{
