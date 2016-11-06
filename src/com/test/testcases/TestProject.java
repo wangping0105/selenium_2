@@ -15,8 +15,7 @@ public class TestProject extends TestBase{
 
 	@Test(dataProvider = "providerMethod")
 	public void testAddProject(Map<String, String> param) {
-		this.simple_login(param.get("username"), param.get("password"));
-		Log.logInfo(param.get("url"));
+		this.goTo(param.get("url"));
 
 		ProjectPage project_page = new ProjectPage(driver);
 		Log.logInfo("--------------------选择项目管理导航菜单！-------------------------");

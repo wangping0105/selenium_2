@@ -14,7 +14,7 @@ public class TestPosition extends TestBase{
 
 	@Test(dataProvider = "providerMethod")
 	public void testAddPosition(Map<String, String> param) {
-		this.simple_login(param.get("username"), param.get("password"));
+//		this.simple_login(param.get("username"), param.get("password"));
 		Log.logInfo(param.get("url"));
 
 		PositionPage posdriver = new PositionPage(driver); // 这是个page类的实例，不是driver

@@ -8,12 +8,14 @@ import java.util.Map;
 import org.dom4j.Element;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
 import com.test.bean.Config;
 import com.test.bean.Global;
 import com.test.page.LoginPage;
+import com.test.util.Log;
 import com.test.util.ParseXml;
 import com.test.util.Util;
 
@@ -24,6 +26,8 @@ public class TestBase {
 	private ParseXml px;
 
 	private Map<String, String> commonMap;
+
+	private static WebDriver save_driver = null;
 
 	private void initialPx(){
 		if(px==null){
@@ -66,13 +70,25 @@ public class TestBase {
 		return object;
 	}
 
+//	@BeforeClass
+//	@AfterClass
+//	@BeforeSuite
+
 	@BeforeClass
 	public void initialDriver(){
-		SeleniumDriver selenium = new SeleniumDriver();
-		driver = selenium.getDriver();
+		if(save_driver != null){
+			driver = save_driver;
+		}else{
+			SeleniumDriver selenium = new SeleniumDriver();
+			driver = selenium.getDriver();
+		}
+	}
+	@AfterClass
+	public void saveDriver(){
+		save_driver = driver;
 	}
 
-	@AfterClass
+	@AfterSuite
 	public void closeDriver(){
 		if(driver!=null){
 			driver.close();
@@ -93,6 +109,7 @@ public class TestBase {
 		Map<String, String> param = golbalData();
 		LoginPage lp = new LoginPage(driver);
 		this.goTo(param.get("url"));
+		Log.logInfo("username 是 "+ username + "pwd 是" + password);
 		if(username.equals(null)){
 			lp.getElement("username").sendKeys(param.get("username"));
 		}else{
@@ -105,6 +122,7 @@ public class TestBase {
 			lp.getElement("password").sendKeys(password);
 		}
 
+		Log.logInfo("点击登录");
 		lp.getElement("login_button").click();
 	}
 

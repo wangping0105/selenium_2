@@ -2,14 +2,17 @@
 <suite name="Suite" verbose="1" parallel="false" thread-count="1">
     <test name="Test" preserve-order="true">
         <classes>
-            <class name="com.test.testcases.Login" />  
+            <class name="com.test.testcases.Login" >  
                 <methods>
 		          <include name="testLogin"/>
-		          <include name="testAddProject"/>
-		          <include name="testAddPosition"/>
                 </methods>
-            <!--  <class name="com.test.testcase.TestProject"></class>
-            <class name="com.test.testcase.TestPosition"></class>-->
+            </class>
+
+            <class name="com.test.testcases.TestProject">
+                <methods>
+                    <include name="testAddProject"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
