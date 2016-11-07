@@ -77,6 +77,7 @@ public class TestBase {
 	public void initialDriver(){
 		if(save_driver != null){
 			driver = save_driver;
+			save_driver = null;
 		}else{
 			SeleniumDriver selenium = new SeleniumDriver();
 			driver = selenium.getDriver();
@@ -85,7 +86,7 @@ public class TestBase {
 
 	@AfterClass
 	public void closeDriver(){
-		if(driver!=null){
+		if(driver != null && save_driver == null){
 			driver.close();
 			driver.quit();
 		}
