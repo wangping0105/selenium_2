@@ -1,10 +1,14 @@
 package com.test.testcases;
 
 import java.io.IOException;
+import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.test.base.TestBase;
@@ -13,9 +17,9 @@ import com.test.util.Log;
 
 public class TestProject extends TestBase{
 
-	@Test(dataProvider = "providerMethod")
+	//@Test(dataProvider = "providerMethod")
 	public void testAddProject(Map<String, String> param) {
-		this.goTo(param.get("url"));
+		this.simple_login(param.get("username"), param.get("password"));
 
 		ProjectPage project_page = new ProjectPage(driver);
 		Log.logInfo("--------------------选择项目管理导航菜单！-------------------------");
@@ -89,19 +93,29 @@ public class TestProject extends TestBase{
 		choose.click();
 		WebElement shanghai = project_page.getElement("choosecityok"); // 关闭项目执行城市选择窗口
 		shanghai.click();
-
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Select selposition = new Select(project_page.getElement("pospattern"));
 		selposition.selectByIndex(1); // 选择岗位用工方式
 		Select selproject = new Select(project_page.getElement("projectdesc"));
 		selproject.selectByIndex(1); // 选择项目紧急程度
-
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		project_page.getElement("projectname").sendKeys(param.get("projectname")); // 填写项目名称
 		Select selmanager = new Select(project_page.getElement("accountmanager"));
 		selmanager.selectByVisibleText("王玲"); // 选择客户经理
 		WebElement prodescription = project_page.getElement("prodescription");
 		project_page.getElement("prodescription").sendKeys(param.get("prodescription")); // 填写项目介绍
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -113,7 +127,7 @@ public class TestProject extends TestBase{
 		Select selexpstandards = new Select(project_page.getElement("expstandards"));
 		selexpstandards.selectByIndex(2); // 选择费用标准
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,7 +138,7 @@ public class TestProject extends TestBase{
 		Select selguaranteedtime = new Select(project_page.getElement("guaranteedtime"));
 		selguaranteedtime.selectByIndex(1); // 选择质保期
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -188,7 +202,7 @@ public class TestProject extends TestBase{
 			WebElement upcompanylogo = project_page.getElement("upcompanylogo"); // 打开上传公司logo窗口
 			upcompanylogo.click();
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -204,7 +218,7 @@ public class TestProject extends TestBase{
 				e1.printStackTrace();
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -255,13 +269,45 @@ public class TestProject extends TestBase{
 		interviewprocess.selectByIndex(1); // 面试流程
 		Select offerweek = new Select(project_page.getElement("offerweek"));
 		offerweek.selectByIndex(0); // offer发放周期
-//		project_page.getElement("othermessage").sendKeys(param.get("othermessage")); // 其他信息
+		project_page.getElement("othermessage").sendKeys(param.get("othermessage")); // 其他信息
 
 		WebElement projectok = project_page.getElement("preserved"); // 保存项目
 		projectok.click();
+		try {
+			Thread.sleep(12000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Log.logInfo("--------------------薪资项目成功！-------------------------");
+		WebElement promp = project_page.getElement("promptext");
+		String promptext = promp.getText();
+		System.out.println(promptext);
+		Assert.assertEquals(promptext, param.get("promptext"));
 		WebElement promptok = project_page.getElement("promptok");
 		promptok.click(); // 关闭提示框
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test(dataProvider = "providerMethod")
+	public void testexecuteTab(Map<String, String> param){
+		this.simple_login(param.get("username"), param.get("password"));
+		ProjectPage project_page = new ProjectPage(driver);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Log.logInfo("--------------------选择项目管理导航菜单！-------------------------");
+		WebElement project = project_page.getElement("project");
+		project.click();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -269,5 +315,72 @@ public class TestProject extends TestBase{
 			e.printStackTrace();
 		}
 
+		Log.logInfo("--------------------获取执行中列表数据！-------------------------");
+          int row = 1;
+          int column = 1;
+          String tab = ".//div[1]/table/tbody/tr";
+          String path=".//div[1]/table/tbody/tr[1]/td";
+//		  String xpath=".//div[1]/table/tbody/tr["+row+"]/td["+column+"]";
+		  //得到table表中所有行对象，并得到所要查询的行对象。
+	      List<WebElement> trs = driver.findElements(By.xpath(tab));
+	      int trNumber = trs.size();
+	      List<WebElement> tds = driver.findElements(By.xpath(path));
+	      int tdNumber = tds.size();
+	      WebElement trtext = trs.get(1);
+	      System.out.println(trNumber);
+          System.out.println(tdNumber);
+          String[] titleArr = new String[]{"项目名称","所属KA","职位数量","顾问人数","岗位需求","推荐量","参面量","offer量","已入职","待入职","启动时间","已执行天数","岗位余量"};
+          Hashtable<String,String> ht = new Hashtable<String,String>();
+         int k = 0;
+//          for (int i = 1; i <= trNumber; i++) {
+            for (int j = 1; j <= tdNumber; j++) {
+            String targ = path+"[" + j + "]";
+            WebElement shuzhi = driver.findElement(By.xpath(targ));
+            String data = shuzhi.getText();
+            String title = titleArr[k];
+            System.out.println(data);
+            ht.put(title, data);
+            k++;
+//            }
+           }
+		   System.out.println(ht);
+
 	}
+
+	 /** 从一个table的单元格中得到文本值. 参数tableCellAddress的格式为
+    row.column, 行列从0开始.
+    @param by  用于得到table对象
+    @param tableCellAddress 一个单元格地址, 如. "1.4"
+    @return 从一个table的单元格中得到文本值
+    */
+//    public String getCellText(By by,String tableCellAddress) {
+//        //得到table元素对象
+//        WebElement table = driver.findElement(by);
+//        //对所要查找的单元格位置字符串进行分解，得到其对应行、列。
+//        int index = tableCellAddress.trim().indexOf('.');
+//        int row =  Integer.parseInt(tableCellAddress.substring(0, index));
+//        int cell = Integer.parseInt(tableCellAddress.substring(index+1));
+//        //得到table表中所有行对象，并得到所要查询的行对象。
+//         List<WebElement> rows = table.findElements(By.tagName("tr"));
+//         WebElement theRow = rows.get(row);
+//         //调用getCell方法得到对应的列对象，然后得到要查询的文本。
+//         String text = getCell(theRow, cell).getText();
+//         return text;
+//    }
+//    private WebElement getCell(WebElement Row,int cell){
+//         List<WebElement> cells;
+//         WebElement target = null;
+//         //列里面有"<th>"、"<td>"两种标签，所以分开处理。
+//         if(Row.findElements(By.tagName("th")).size()>0){
+//            cells = Row.findElements(By.tagName("th"));
+//            target = cells.get(cell);
+//         }
+//         if(Row.findElements(By.tagName("td")).size()>0){
+//            cells = Row.findElements(By.tagName("td"));
+//            target = cells.get(cell);
+//         }
+//        return target;
+//
+//    }
+
 }

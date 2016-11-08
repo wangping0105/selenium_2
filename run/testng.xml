@@ -10,7 +10,8 @@
 
             <class name="com.test.testcases.TestProject">
                 <methods>
-                    <include name="testAddProject"/>
+                    <include name="testAddProject"/> 
+                    <include name="testexecuteTab"/>
                 </methods>
             </class>
         </classes>

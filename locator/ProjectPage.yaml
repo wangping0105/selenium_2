@@ -230,4 +230,13 @@ preserved:
 promptok:
   type:xpath
   value:".//*[@id='layui-layer3']/div[3]/a"
+# 提示窗口文本信息
+promptext:
+  type:xpath
+  value:".//*[@id='layui-layer3']/div[2]"
+  
+#正在执行项目列表
+executeTab:
+  type:xpath
+  value:".//div[1]/table/tbody/tr"
   

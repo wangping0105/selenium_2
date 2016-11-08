@@ -106,7 +106,7 @@ public class TestBase {
 		Map<String, String> param = golbalData();
 		LoginPage lp = new LoginPage(driver);
 		this.goTo(param.get("url"));
-		Log.logInfo("username 是 "+ username + "pwd 是" + password);
+		Log.logInfo("username 是 "+ username + "  pwd 是" + password);
 
 		if(username.equals(null)){
 			lp.getElement("username").sendKeys(param.get("username"));
