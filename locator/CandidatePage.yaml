@@ -1,0 +1,21 @@
+# 候选人管理菜单
+candidate:
+  type:xpath
+  value:".//*[@id='myNav']/li[3]/a"
+# 新增候选人按钮
+addcandidate:
+  type:xpath
+  value:".//*[@id='candidateManageNav']/li[3]/a"
+# 上传匹配简历按钮
+upresume:
+  type:xpath
+  value:".//div/div[2]/div/div[1]/button[2]"
+# 选择简历文件
+choosecandidate:
+  type:xpath
+  value:".//*[contains(text(),'选择文件')]"
+# 简历上传成功确认按钮
+upcandidateok:
+  type:xpath
+  value:".//*[@id='layui-layer1']/div[3]/a[1]"
+  

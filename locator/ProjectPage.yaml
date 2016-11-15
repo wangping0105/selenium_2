@@ -239,4 +239,8 @@ promptext:
 executeTab:
   type:xpath
   value:".//div[1]/table/tbody/tr"
+#正在执行列表第一行
+firstrow:
+  type:xpath
+  value:".//div[1]/table/tbody/tr[1]/td"
   

@@ -317,6 +317,7 @@ public class TestProject extends TestBase{
 
 		Log.logInfo("--------------------获取执行中列表数据！-------------------------");
           int row = 1;
+
           int column = 1;
           String tab = ".//div[1]/table/tbody/tr";
           String path=".//div[1]/table/tbody/tr[1]/td";
