@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import com.test.base.TestBase;
@@ -72,7 +73,60 @@ public class TestCandidate extends TestBase{
 		}
 
 		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
+		String name = candidate_page.getElement("candidatename").getText();
+		String sex = candidate_page.getElement("candidatesex").getText();
+		String mobile = candidate_page.getElement("candidatephone").getText();
+		String maile = candidate_page.getElement("candidatemaile").getText();
+		String age = candidate_page.getElement("candidateage").getText();
+		String worktime = candidate_page.getElement("candidatetime").getText();
+		String marry = candidate_page.getElement("candidatemarry").getText();
+		String workcity = candidate_page.getElement("candidatecity").getText();
+		String twolevelcity = candidate_page.getElement("candidatetwolevel").getText();
+		System.out.println(name);
+		System.out.println(sex);
+		System.out.println(mobile);
+		System.out.println(maile);
+		System.out.println(age);
+		System.out.println(worktime);
+		System.out.println(marry);
+		System.out.println(workcity);
+		System.out.println(twolevelcity);
+		if (name==""){
+		candidate_page.getElement("candidatename").sendKeys(param.get("candidatename"));
+		}
+		if (sex==""){
+			Select candidatesex = new Select(candidate_page.getElement("candidatesex"));
+			candidatesex.selectByIndex(1); // 性别
+			}
+		if (mobile==""){
+			candidate_page.getElement("candidatephone").sendKeys(param.get("candidatephone"));
+			}
+		if (maile==""){
+			candidate_page.getElement("candidatemaile").sendKeys(param.get("candidatemaile"));
+			}
+		if (age==""){
+			candidate_page.getElement("candidateage").sendKeys(param.get("candidateage"));
+			}
+		if (worktime==""){
+			Select candidatetime = new Select(candidate_page.getElement("candidatetime"));
+			candidatetime.selectByIndex(1); // 工作年限
+			}
+		if (marry==""){
+			Select candidatemarry = new Select(candidate_page.getElement("candidatemarry"));
+			candidatemarry.selectByIndex(1); // 婚姻状况
+			}
+		if (workcity==""){
+			Select candidatecity = new Select(candidate_page.getElement("candidatecity"));
+			candidatecity.selectByVisibleText("上海市"); //工作地区
+			}
+		if (twolevelcity==""){
+			Select candidatetwolevel = new Select(candidate_page.getElement("candidatetwolevel"));
+			candidatetwolevel.selectByVisibleText("上海市"); //工作地区二级地区
+			}
 
+		WebElement candidatesave = candidate_page.getElement("candidatesave");
+
+		candidatesave.click();
 	}
 
 
