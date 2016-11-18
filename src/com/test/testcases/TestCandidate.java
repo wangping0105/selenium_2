@@ -18,10 +18,10 @@ public class TestCandidate extends TestBase{
 		this.simple_login(param.get("username"), param.get("password"));
 
 		CandidatePage candidate_page = new CandidatePage(driver);
-		Log.logInfo("--------------------选择候选人管理导航菜单！-------------------------");
+		Log.logInfo("-------------------选择候选人管理导航菜单！----------------------");
 		WebElement candidate = candidate_page.getElement("candidate");
 		candidate.click();
-		Log.logInfo("--------------------点击新增候选人！-------------------------");
+		Log.logInfo("---------------------点击新增候选人！-------------------------");
 		WebElement add_candidate = candidate_page.getElement("addcandidate");
 		add_candidate.click();
 		try {
@@ -65,7 +65,7 @@ public class TestCandidate extends TestBase{
 		WebElement upcandidateok = candidate_page.getElement("upcandidateok");
 		upcandidateok.click();
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(6000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

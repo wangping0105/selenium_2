@@ -19,3 +19,45 @@ upcandidateok:
   type:xpath
   value:".//*[@id='layui-layer1']/div[3]/a[1]"
   
+#个人信息姓名
+candidatename:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[1]/div[2]/input"
+#个人信息性别
+candidatesex:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[1]/div[4]/select"
+#个人信息手机
+candidatephone:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[2]/div[2]/input"  
+#个人信息邮箱
+candidatemaile:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[2]/div[4]/input"  
+#个人信息出生年月
+candidateage:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[3]/div[2]/input"  
+#个人信息工作年限
+candidatetime:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[3]/div[4]/select"  
+#个人信息婚姻状况
+candidatemarry:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[4]/div[2]/select"  
+#个人信息工作地区
+candidatecity:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[4]/div[4]/span[1]/select"  
+#个人信息工作地区二级城市
+candidatetwolevel:
+  type:xpath
+  value:".//*[@id='userInfoForm']/div[4]/div[4]/span[2]/select" 
+#个人信息保存
+candidatesave:
+  type:xpath
+  value:".//*[@id='userInfoFormSubmit']"  
+  
+  
