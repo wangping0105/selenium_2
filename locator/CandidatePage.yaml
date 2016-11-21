@@ -60,4 +60,56 @@ candidatesave:
   type:xpath
   value:".//*[@id='userInfoFormSubmit']"  
   
-  
+ #职业意向
+#技术方向按钮
+technicaldirection:
+  type:xpath
+  value:".//*[@id='jobIntentionsForm']/div[1]/div[2]/i"
+#技术方向输入框
+technicaltext:
+  type:xpath
+  value:".//*[@id='jobIntentionsForm']/div[1]/div[2]/div/ul"
+#选择一个技术方向
+choosedirection:
+  type:xpath
+  value:".//*[@id='chooseTechMapLayer']/ul/li[1]"  
+#选择技术方向确定按钮
+directionok:
+  type:xpath
+  value:".//div[3]/a" 
+#期望行业
+expectedindustry:
+  type:xpath
+  value:".//*[@id='jobIntentionsForm']/div[1]/div[4]/i"
+#选择一个期望行业
+chooseindustry:
+  type:xpath
+  value:".//*[@id='chooseIndustryMapLayer']/ul/li[1]"
+#选择期望行业确定按钮
+industryok:
+  type:xpath
+  value:".//*[@id='layui-layer15']/div[3]/a"
+#期望城市
+expectedcity:
+  type:xpath
+  value:".//*[@id='jobIntentionsForm']/div[2]/div[2]/i"
+#选择一个期望城市
+choosecity:
+  type:xpath
+  value:".//*[@id='chooseWantCityMapLayer']/ul/li[1]"
+#选择期望城市确定按钮
+expectedcityok:
+  type:xpath
+  value:".//*[@id='layui-layer16']/div[3]/a"
+#期望年薪
+expectedsalary:
+  type:xpath
+  value:".//*[@id='jobIntentionsForm']/div[2]/div[4]/select"
+#求职状态
+jobstatus:
+  type:xpath
+  value:".//*[@id='jobIntentionsForm']/div[3]/div[2]/select"
+#职业意向
+careerintention:
+  type:xpath
+  value:".//*[@id='jobIntentionsForm']/div[6]/button"

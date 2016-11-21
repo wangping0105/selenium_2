@@ -66,35 +66,28 @@ public class TestCandidate extends TestBase{
 		WebElement upcandidateok = candidate_page.getElement("upcandidateok");
 		upcandidateok.click();
 		try {
-			Thread.sleep(6000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAA");
-		String name = candidate_page.getElement("candidatename").getText();
-		String sex = candidate_page.getElement("candidatesex").getText();
-		String mobile = candidate_page.getElement("candidatephone").getText();
-		String maile = candidate_page.getElement("candidatemaile").getText();
-		String age = candidate_page.getElement("candidateage").getText();
-		String worktime = candidate_page.getElement("candidatetime").getText();
-		String marry = candidate_page.getElement("candidatemarry").getText();
-		String workcity = candidate_page.getElement("candidatecity").getText();
-		String twolevelcity = candidate_page.getElement("candidatetwolevel").getText();
-		System.out.println(name);
-		System.out.println(sex);
-		System.out.println(mobile);
-		System.out.println(maile);
-		System.out.println(age);
-		System.out.println(worktime);
-		System.out.println(marry);
-		System.out.println(workcity);
-		System.out.println(twolevelcity);
+
+		String name = candidate_page.getElement("candidatename").getAttribute("value");
+		String sex = new Select(candidate_page.getElement("candidatesex")).getFirstSelectedOption().getText();
+		String mobile = candidate_page.getElement("candidatephone").getAttribute("value");
+		String maile = candidate_page.getElement("candidatemaile").getAttribute("value");
+		String age = candidate_page.getElement("candidateage").getAttribute("value");
+		String worktime = new Select(candidate_page.getElement("candidatetime")).getFirstSelectedOption().getText();
+		String marry = new Select(candidate_page.getElement("candidatemarry")).getFirstSelectedOption().getText();
+		String workcity = new Select(candidate_page.getElement("candidatecity")).getFirstSelectedOption().getText();
+		String twolevelcity = new Select(candidate_page.getElement("candidatetwolevel")).getFirstSelectedOption().getText();;
+
 		if (name==""){
 		candidate_page.getElement("candidatename").sendKeys(param.get("candidatename"));
 		}
-		if (sex==""){
+		if (sex.equals("请选择")){
 			Select candidatesex = new Select(candidate_page.getElement("candidatesex"));
 			candidatesex.selectByIndex(1); // 性别
 			}
@@ -107,26 +100,88 @@ public class TestCandidate extends TestBase{
 		if (age==""){
 			candidate_page.getElement("candidateage").sendKeys(param.get("candidateage"));
 			}
-		if (worktime==""){
+		if (worktime.equals("请选择")){
 			Select candidatetime = new Select(candidate_page.getElement("candidatetime"));
 			candidatetime.selectByIndex(1); // 工作年限
 			}
-		if (marry==""){
+		if (marry.equals("请选择")){
 			Select candidatemarry = new Select(candidate_page.getElement("candidatemarry"));
 			candidatemarry.selectByIndex(1); // 婚姻状况
 			}
-		if (workcity==""){
+		if (workcity.equals("请选择")){
 			Select candidatecity = new Select(candidate_page.getElement("candidatecity"));
 			candidatecity.selectByVisibleText("上海市"); //工作地区
 			}
-		if (twolevelcity==""){
+		if (twolevelcity.equals("请选择")){
 			Select candidatetwolevel = new Select(candidate_page.getElement("candidatetwolevel"));
 			candidatetwolevel.selectByVisibleText("上海市"); //工作地区二级地区
 			}
 
 		WebElement candidatesave = candidate_page.getElement("candidatesave");
+		candidatesave.click(); //保存个人信息
 
-		candidatesave.click();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String direction = candidate_page.getElement("technicaltext").getText();
+        System.out.println(direction);
+        if (direction.equals("")){
+		WebElement technicaldirection = candidate_page.getElement("technicaldirection");
+		technicaldirection.click();  //打开技术方向窗口
+		WebElement choosedirection = candidate_page.getElement("choosedirection");
+		choosedirection.click();  //技术方向窗口选择一个技术方向
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        }
+        String direction2 = candidate_page.getElement("technicaltext").getAttribute("value");
+        System.out.println(direction2);
+
+		WebElement directionok = candidate_page.getElement("directionok");
+		directionok.click();  //关闭技术方向窗口
+
+//		WebElement expectedindustry = candidate_page.getElement("expectedindustry");
+//		expectedindustry.click();  //打开期望行业窗口
+//		WebElement chooseindustry = candidate_page.getElement("chooseindustry");
+//		chooseindustry.click();  //期望行业窗口选择一个期望行业
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		WebElement industryok = candidate_page.getElement("industryok");
+//		industryok.click();  //关闭期望行业窗口
+//
+//		WebElement expectedcity = candidate_page.getElement("expectedcity");
+//		expectedcity.click();  //打开期望城市窗口
+//		WebElement choosecity = candidate_page.getElement("choosecity");
+//		choosecity.click();  //期望城市窗口选择一个期望城市
+//		try {
+//			Thread.sleep(2000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		WebElement expectedcityok = candidate_page.getElement("expectedcityok");
+//		expectedcityok.click();  //关闭期望城市窗口
+
+		WebElement careerintention = candidate_page.getElement("careerintention");
+		careerintention.click();  //提交职业意向
+
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 
